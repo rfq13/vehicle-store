@@ -66,7 +66,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Installation
 
 ##### 1. Pastikan MongoDB sudah terinstal.
-##### 2. Buka terminal dan jalankan perintah ```git clone https://github.com/rfq13/vehicle-store.git``` untuk mengunduh repository dari GitHub.
+##### 2. Buka terminal dan jalankan perintah berikut untuk mengunduh repository dari GitHub. 
+```bash 
+git clone https://github.com/rfq13/vehicle-store.git
+```
 ##### 3. Masuk ke folder proyek dengan perintah cd vehicle-store.
 ##### 4. Salin file .env.example dengan perintah ```cp .env.example .env```.
 ##### 5. Buka file .env dan ubah pengaturan koneksi database menjadi sebagai berikut:
