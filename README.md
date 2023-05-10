@@ -62,3 +62,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Installation
+
+### 1. Pastikan MongoDB sudah terinstal.
+### 2. Buka terminal dan jalankan perintah git clone https://github.com/rfq13/vehicle-store.git untuk mengunduh repository dari GitHub.
+### 3. Masuk ke folder proyek dengan perintah cd vehicle-store.
+### 4. Salin file .env.example dengan perintah cp .env.example .env.
+### 5. Buka file .env dan ubah pengaturan koneksi database menjadi sebagai berikut:
+```bash
+DB_CONNECTION=mongodb
+DB_HOST=127.0.0.1
+DB_PORT=27017
+DB_DATABASE=vehicle_store
+DB_USERNAME=
+DB_PASSWORD=
+```
+### 6. Jalankan perintah ```composer install``` untuk menginstal semua dependensi.
+### 7. Jalankan perintah ```php artisan key:generate``` untuk membuat kunci aplikasi.
+### 8. Jalankan perintah ```php artisan migrate``` untuk menjalankan migrasi database.
+### 9. Jalankan perintah ```php artisan db:seed``` untuk menambahkan data awal ke dalam database.
+### 10. Jalankan perintah ```php artisan test``` untuk menjalankan unit test.
+Selamat mencoba⚡️!
