@@ -18,12 +18,12 @@ class TransactionController extends Controller
 
     public function index(Request $request)
     {
-        $vehicleId = $request->query('vehicle_id');
+        $vehicleId = $request->query('vehicle_id'); // url query "?vehicle_id=123" => 123 contoh id vehicle yang digunakan untuk melihat laporan penjualan per kendaraan
 
         if($vehicleId) $vehicleId = new ObjectID($vehicleId);
         $data = $this->transactionService->allWithVehicle($vehicleId);
 
-        return BaseResponse::success($data, $data->count());
+        return BaseResponse::success($data);
     }
 
     public function show($id)
@@ -34,6 +34,22 @@ class TransactionController extends Controller
             return BaseResponse::notFound('Transaction not found');
         }
 
-        return BaseResponse::success($data, 1);
+        return BaseResponse::success($data);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'vehicle_id' => 'required',
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        $data = $this->transactionService->create($request->all());
+
+        if (!$data) {
+            return BaseResponse::error('Transaction failed!');
+        }
+
+        return BaseResponse::success($data);
     }
 }

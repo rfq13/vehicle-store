@@ -34,7 +34,7 @@ class AuthController extends Controller
         $user->password = bcrypt(request()->password);
         $user->save();
 
-        return BaseResponse::success($user, 1, 'User registration successful', 201);
+        return BaseResponse::success($user, 'User registration successful', 201);
     }
 
 
@@ -73,7 +73,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return BaseResponse::success(null, null, 'User logged out successfully', 200);
+        return BaseResponse::success(null, 'User logged out successfully', 200);
     }
 
     /**
@@ -99,6 +99,6 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
-        ], null, 'User login successful', 200);
+        ], 'User login successful', 200);
     }
 }

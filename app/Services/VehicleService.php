@@ -6,9 +6,9 @@ use App\Repositories\VehicleRepository;
 
 interface VehicleServiceInterface
 {
-    public function getStock();
-    public function sellVehicle($id);
-    public function getSalesReport();
+    public function getVehiclesWithMotorsAndCars();
+    public function decrementStock($id);
+    public function all();
 }
 
 class VehicleService implements VehicleServiceInterface
@@ -20,20 +20,25 @@ class VehicleService implements VehicleServiceInterface
         $this->vehicleRepo = $vehicleRepo;
     }
 
-    public function getStock()
+    public function getVehiclesWithMotorsAndCars()
     {
         return $this->vehicleRepo->getVehiclesWithMotorsAndCars();
     }
 
-    public function sellVehicle($id)
+    public function decrementStock($id)
     {
         $vehicle = $this->vehicleRepo->decrementStock($id);
 
         return $vehicle;
     }
 
-    public function getSalesReport()
+    public function all()
     {
         return $this->vehicleRepo->all();
+    }
+
+    public function find($id)
+    {
+        return $this->vehicleRepo->find($id);
     }
 }

@@ -99,7 +99,7 @@ class VehicleRepository extends BaseRepository
 
         if ($vehicle && $vehicle->stock >= $quantity) {
             $vehicle->decrement('stock', $quantity);
-            return true;
+            return $vehicle;
         }
 
         return false;

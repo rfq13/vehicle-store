@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 
 class BaseResponse
 {
-    public static function success($data = null, $total = 0, $message = null, $code = 200)
+    public static function success($data = null, $message = null, $code = 200)
     {
         $response = [
             'success' => true,
@@ -14,10 +14,13 @@ class BaseResponse
 
         if ($data) {
             $response['data'] = $data;
-        }
 
-        if ($total !== null) {
-            $response['total'] = $total;
+            if(is_array($data)){
+                $isAssoc = count(array_filter(array_keys($data), 'is_string')) > 0;
+                if(!$isAssoc) $response['total'] = count($data);
+            }else{
+                $response['total'] = $data->count();
+            }
         }
 
         if ($message) {

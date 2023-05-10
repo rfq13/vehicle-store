@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\VehicleServiceInterface;
+use App\Http\Response\BaseResponse;
 
 class VehicleController extends Controller
 {
@@ -16,16 +17,6 @@ class VehicleController extends Controller
 
     public function getStock()
     {
-        return $this->vehicleService->getStock();
-    }
-
-    public function sellVehicle(Request $request, $id)
-    {
-        return $this->vehicleService->sellVehicle($id);
-    }
-
-    public function getSalesReport()
-    {
-        return $this->vehicleService->getSalesReport();
+        return BaseResponse::success($this->vehicleService->getVehiclesWithMotorsAndCars());
     }
 }

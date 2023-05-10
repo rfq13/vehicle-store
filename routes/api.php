@@ -31,14 +31,13 @@ Route::group([
 
 Route::group([ 'middleware' => 'jwt.auth' ], function ($router) {
     Route::group([ 'prefix' => 'vehicle' ], function ($router) {
-        Route::get('/stock', [VehicleController::class, 'getStock']);
-        Route::post('/sell/{id}', [VehicleController::class, 'sellVehicle']);
-        Route::get('/sales-report', [VehicleController::class, 'getSalesReport']);
+        Route::get('/stock', [VehicleController::class, 'getStock']); // lihat stock kendaraan
     });
 
     Route::group([ 'prefix' => 'transaction' ], function ($router) {
-        Route::get('/', [TransactionController::class, 'index']);
+        Route::get('/', [TransactionController::class, 'index']); // laporan penjualan & laporan penjualan per kendaraan
         Route::get('/{id}', [TransactionController::class, 'show']);
+        Route::post('/', [TransactionController::class, 'store']);
     });
 });
 
