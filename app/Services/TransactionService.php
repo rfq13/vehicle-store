@@ -2,6 +2,8 @@
 namespace App\Services;
 
 use App\Repositories\TransactionRepository;
+use App\Repositories\VehicleRepository;
+use App\Models\Vehicle;
 
 
 interface TransactionServiceInterface
@@ -27,16 +29,18 @@ class TransactionService implements TransactionServiceInterface
 
     public function allWithVehicle($vehileId = null)
     {
+        $cond = [];
         if ($vehileId) {
-            return $this->TransactionRepo->getTransactionByVehicleId($vehileId);
+            $cond['vehicle_id'] = $vehileId;
         }
-        return $this->TransactionRepo->getAllWithVehicle();
+        return $this->TransactionRepo->getAllWithVehicle($cond);
     }
 
     // pembelian baru
     public function create($data)
     {
-        $vehicle = VehicleService::find($data['vehicle_id']);
+        $vehicleRepo = new VehicleRepository(new Vehicle);
+        $vehicle = $vehicleRepo->find($data['vehicle_id']);
         if (!$vehicle) {
             return false;
         }
@@ -52,7 +56,7 @@ class TransactionService implements TransactionServiceInterface
             return false;
         }
 
-        VehicleService::decrementStock($data['vehicle_id'], $data['quantity']);
+        $vehicleRepo->decrementStock($data['vehicle_id'], $data['quantity']);
 
         return $transaction;
     }

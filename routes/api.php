@@ -31,7 +31,7 @@ Route::group([
 
 Route::group([ 'middleware' => 'jwt.auth' ], function ($router) {
     Route::group([ 'prefix' => 'vehicle' ], function ($router) {
-        Route::get('/stock', [VehicleController::class, 'getStock']); // lihat stock kendaraan
+        Route::get('/', [VehicleController::class, 'getStock']); // lihat stock kendaraan
     });
 
     Route::group([ 'prefix' => 'transaction' ], function ($router) {

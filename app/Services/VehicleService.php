@@ -36,9 +36,4 @@ class VehicleService implements VehicleServiceInterface
     {
         return $this->vehicleRepo->all();
     }
-
-    public function find($id)
-    {
-        return $this->vehicleRepo->find($id);
-    }
 }
